@@ -1,58 +1,65 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
-  const[data,setData]=useState({
-    name :'',
+  const [data, setData] = useState({
+    name: '',
     email: '',
-    password : '',
-    confirmPassword: '' 
+    password: '',
+    confirmPassword: '',
+    mobile: ''
   })
   const [nameError, setNameError] = useState('');
   const [emailError, setEmailError] = useState('');
-  const [passError,setPassError] = useState('');
+  const [passError, setPassError] = useState('');
   const [confirmPassError, setConfirmPassError] = useState('');
+  const [mobileError, setMobileError] = useState('');
 
-  const MyEvent =((e)=>{
-    setData({...data,[e.target.name] :e.target.value})
+  const MyEvent = ((e) => {
+    setData({ ...data, [e.target.name]: e.target.value })
   })
 
-  const handleSubmit =((e)=>{
-  e.preventDefault ();
+  const handleSubmit = ((e) => {
+    e.preventDefault();
 
-  if (!data.name) {
-    setNameError('name is required.');
-    return;
-  }
-  setNameError('');
+    if (!data.name) {
+      setNameError('name is required.');
+      return;
+    }
+    setNameError('');
 
-  if (!data.email) {
-    setEmailError('Email is required.');
-    return;
-  }
-  setEmailError('');
+    if (!data.email) {
+      setEmailError('Email is required.');
+      return;
+    }
+    setEmailError('');
 
-  if (!data.password) {
-    setPassError('password is required.');
-    return;
-  }
-  setPassError('');
+    if (!data.password) {
+      setPassError('password is required.');
+      return;
+    }
+    setPassError('');
 
-  if (!data.confirmPassword) {
-    setConfirmPassError('Confirm Password is required.');
-    return;
-  }
-  setConfirmPassError('');
+    if (!data.confirmPassword) {
+      setConfirmPassError('Confirm Password is required.');
+      return;
+    }
+    setConfirmPassError('');
 
-  if (data.password !== data.confirmPassword) {
-    setConfirmPassError('Passwords do not match.');
-    return;
-  }
-  setConfirmPassError('');
+    if (data.password !== data.confirmPassword) {
+      setConfirmPassError('Passwords do not match.');
+      return;
+    }
+    setConfirmPassError('');
 
+    if (!data.mobile) {
+      setMobileError('Mobile number is required.');
+      return;
+    }
+    setMobileError('');
 
-console.log(data);
-alert('submited successfuly')
+    console.log(data);
+    alert('submited successfuly')
   })
 
   return (
@@ -80,6 +87,12 @@ alert('submited successfuly')
         <label>Confirm Password</label>
         <input type='password' className='input-field' name='confirmPassword' placeholder='Confirm the password' onChange={MyEvent} />
         {confirmPassError && <p className="error-message">{confirmPassError}</p>}
+      </div>
+
+      <div className='form-group'>
+        <label>Mobile Number</label>
+        <input type='text' className='input-field' name='mobile' placeholder='Enter your mobile number' onChange={MyEvent} />
+        {mobileError && <p className="error-message">{mobileError}</p>}
       </div>
 
       <div className='submit-button'>
